@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 import json
 from functools import wraps
 import shutil
@@ -336,7 +336,7 @@ def kakou_get(start_id, end_id):
         for i in c['data']['rows']:
 	    item = {}
 	    hpys_tuple = helper_bldh.hpzl2hpys(i['carType'])
-	    fxbh_tuple = helper_bldh.fxbh2code(i['carDirect'])
+	    fxbh_tuple = helper_bldh.fxbh2code(int(i['carDirect']))
 	    kkdd_id = helper_bldh.create_kkddid(i['carImgUrl'])
 	    item['id'] = i['id']
 	    item['hphm'] = hphm_dict.get(i['carNum'], i['carNum'])
@@ -348,7 +348,7 @@ def kakou_get(start_id, end_id):
 	    item['kkdd_id'] = kkdd_id
 	    item['fxbh'] = fxbh_tuple[1]
 	    item['fxbh_code'] = fxbh_tuple[0]
-	    item['cdbh'] = i['carWayCode']
+	    item['cdbh'] = int(i['carWayCode'])
 	    item['clsd'] = i['carSpeed']
             item['hpzl'] = '00'
 	    item['kkbh'] = ''
@@ -358,7 +358,7 @@ def kakou_get(start_id, end_id):
 
 	return jsonify({'items': items, 'total_count': len(items)})	    
     except Exception as e:
-	logger.exception(e)
+	logger.error(e)
 
 
 @app.route('/kakou2/<string:st>/<string:et>', methods=['GET'])
@@ -373,7 +373,7 @@ def kakou2_get(st, et):
         for i in c['data']['rows']:
 	    item = {}
 	    hpys_tuple = helper_bldh.hpzl2hpys(i['carType'])
-	    fxbh_tuple = helper_bldh.fxbh2code(i['carDirect'])
+	    fxbh_tuple = helper_bldh.fxbh2code(int(i['carDirect']))
 	    kkdd_id = helper_bldh.create_kkddid(i['carImgUrl'])
 	    item['id'] = i['id']
 	    item['hphm'] = hphm_dict.get(i['carNum'], i['carNum'])
@@ -385,7 +385,7 @@ def kakou2_get(st, et):
 	    item['kkdd_id'] = kkdd_id
 	    item['fxbh'] = fxbh_tuple[1]
 	    item['fxbh_code'] = fxbh_tuple[0]
-	    item['cdbh'] = i['carWayCode']
+	    item['cdbh'] = int(i['carWayCode'])
 	    item['clsd'] = i['carSpeed']
             item['hpzl'] = '00'
 	    item['kkbh'] = ''
