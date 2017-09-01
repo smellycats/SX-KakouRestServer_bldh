@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 u"""helper functions.
 
     SX-SMSServer.helper
@@ -76,4 +76,3 @@ def ip2num(ip):
 def num2ip(num):
     u"""整数转IP地址."""
     return '.'.join([str(num/(256**i)%256) for i in range(3,-1,-1)])
-
